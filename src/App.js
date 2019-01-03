@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
+import Home from './components/Home'
+import Produtos from './components/Produtos'
+import Sobre from './components/Sobre'
+import Busca from './components/Busca'
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
+  
   render() {
     return (
-      <div>
-  
-      </div>
+      <Router>
+          <div>
+            <nav className="navbar navbar-inverse">
+              <div className="container">
+                <div className="navbar-header">
+                  <a href="/" className="navbar-brand">Gerenciador </a>
+                </div>
+
+                <ul className="nav navbar-nav">
+                  <li><Link to='/'>Home</Link></li>
+                  <li><Link to='/produtos'>Produtos</Link></li>
+                  <li><Link to='/sobre'>Sobre</Link></li>
+                  <li><Link to='/busca'>Busca</Link></li>
+                  </ul>
+              </div>
+            </nav>
+            <div className="container">
+              <Route path='/' exact component={Home} />
+              <Route path='/produtos' component={Produtos} />
+              <Route path='/sobre' component={Sobre} />
+              <Route path='/busca' component={Busca} />
+            </div>
+          </div>
+      </Router>
+      
     );
   }
 }
